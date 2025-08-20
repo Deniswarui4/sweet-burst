@@ -1,0 +1,328 @@
+"use client"
+
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { query } from "@/lib/db"
+import type { ContactMessage, Event, Invoice, Payment, PaymentWithEvent } from "@/lib/db-types"
+
+// Helper function to safely execute database queries
+async function safeQuery<T>(queryPromise: Promise<T>): Promise<T> {
+  try {
+    return await queryPromise;
+  } catch (error) {
+    console.error('Database query error:', error);
+    return [] as unknown as T;
+  }
+}
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Calendar, DollarSign, MessageSquare, TrendingUp, Clock, AlertCircle } from "lucide-react"
+import Link from "next/link"
+import { MessagesTable } from "@/components/dashboard/messages-table"
+import { EventsTable } from "@/components/dashboard/events-table"
+import { RecentActivity } from "@/components/dashboard/recent-activity"
+
+// Simulate an auth check - in a real app, you'd check an auth token or session
+export default function DashboardPage() {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [data, setData] = useState<{
+    messages: ContactMessage[];
+    events: Event[];
+    invoices: Invoice[];
+    payments: Payment[];
+    upcomingEvents: Event[];
+    recentPayments: PaymentWithEvent[];
+  } | null>(null);
+
+  useEffect(() => {
+    // In a real app, you would check for a valid session or token here
+    const checkAuth = async () => {
+      try {
+        // Simulate an auth check
+        await new Promise(resolve => setTimeout(resolve, 500));
+        // If not authenticated, redirect to login
+        // For now, we'll just set isAuthenticated to true
+        setIsAuthenticated(true);
+        loadDashboardData();
+      } catch (error) {
+        console.error('Auth check failed:', error);
+        router.push('/login');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    checkAuth();
+  }, [router]);
+
+  const loadDashboardData = async () => {
+    try {
+      setIsLoading(true);
+      const [
+        messages,
+        events,
+        invoices,
+        payments,
+        upcomingEvents,
+        recentPayments
+      ] = await Promise.all([
+        safeQuery<ContactMessage[]>(
+          query`SELECT * FROM contact_messages ORDER BY created_at DESC LIMIT 5`
+        ),
+        safeQuery<Event[]>(
+          query`SELECT * FROM events ORDER BY created_at DESC`
+        ),
+        safeQuery<Invoice[]>(
+          query`SELECT * FROM invoices ORDER BY created_at DESC`
+        ),
+        safeQuery<Payment[]>(
+          query`SELECT * FROM payments ORDER BY created_at DESC LIMIT 5`
+        ),
+        safeQuery<Event[]>(
+          query`SELECT * FROM events WHERE event_date >= CURRENT_DATE ORDER BY event_date ASC LIMIT 5`
+        ),
+        safeQuery<PaymentWithEvent[]>(
+          query`
+            SELECT p.*, e.client_name, e.event_type, e.event_date 
+            FROM payments p
+            JOIN events e ON p.event_id = e.id
+            ORDER BY p.payment_date DESC LIMIT 5
+          `
+        )
+      ]);
+
+      setData({
+        messages,
+        events,
+        invoices,
+        payments,
+        upcomingEvents,
+        recentPayments
+      });
+    } catch (error) {
+      console.error('Failed to load dashboard data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+      recentPayments
+    ] = await Promise.all([
+      safeQuery<ContactMessage[]>(
+        query`SELECT * FROM contact_messages ORDER BY created_at DESC LIMIT 5`
+      ),
+      safeQuery<Event[]>(
+        query`SELECT * FROM events ORDER BY created_at DESC`
+      ),
+      safeQuery<Invoice[]>(
+        query`SELECT * FROM invoices ORDER BY created_at DESC`
+      ),
+      safeQuery<Payment[]>(
+        query`SELECT * FROM payments ORDER BY created_at DESC LIMIT 5`
+      ),
+      safeQuery<Event[]>(
+        query`SELECT * FROM events WHERE event_date >= CURRENT_DATE ORDER BY event_date ASC LIMIT 5`
+      ),
+      safeQuery<PaymentWithEvent[]>(
+        query`
+          SELECT p.*, e.client_name, e.event_type, e.event_date
+          FROM payments p
+          JOIN events e ON p.event_id = e.id
+          ORDER BY p.payment_date DESC LIMIT 5
+        `
+      ),
+    ])
+
+    // Calculate stats with fallbacks
+    const totalRevenue = events.reduce((sum: number, event: Event) => sum + (event.paid_amount || 0), 0)
+    const pendingInvoices = invoices.filter((inv: Invoice) => inv.status === "pending" || inv.status === "sent").length
+    const activeEvents = events.filter((event: Event) => 
+      event.status === "confirmed" || event.status === "in_progress"
+    ).length
+    const newMessages = messages.filter((msg: ContactMessage) => msg.status === "new").length
+
+    return (
+      <div className="min-h-screen bg-gray-50 p-6">
+        <div className="max-w-7xl mx-auto space-y-8">
+          {/* Header */}
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+              <p className="text-gray-600">Welcome back! Here's what's happening with your business.</p>
+            </div>
+            <div className="flex space-x-4">
+              <Button asChild>
+                <Link href="/dashboard/events/new">New Event</Link>
+              </Button>
+              <Button variant="outline" asChild>
+                <Link href="/dashboard/invoices">Manage Invoices</Link>
+              </Button>
+            </div>
+          </div>
+
+          {/* Stats Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+                <DollarSign className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">${totalRevenue.toLocaleString()}</div>
+                <p className="text-xs text-muted-foreground">
+                  <TrendingUp className="inline h-3 w-3 mr-1" />
+                  +12% from last month
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Active Events</CardTitle>
+                <Calendar className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{activeEvents}</div>
+                <p className="text-xs text-muted-foreground">{upcomingEvents.length} upcoming this month</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Pending Invoices</CardTitle>
+                <AlertCircle className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{pendingInvoices}</div>
+                <p className="text-xs text-muted-foreground">Awaiting payment</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">New Messages</CardTitle>
+                <MessageSquare className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{newMessages}</div>
+                <p className="text-xs text-muted-foreground">Require response</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Main Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Left Column - Messages and Events */}
+            <div className="lg:col-span-2 space-y-8">
+              {/* Recent Messages */}
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <CardTitle>Recent Messages</CardTitle>
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href="/dashboard/messages">View All</Link>
+                  </Button>
+                </CardHeader>
+                <CardContent>
+                  <MessagesTable messages={messages} />
+                </CardContent>
+              </Card>
+
+              {/* Events Overview */}
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <CardTitle>Recent Events</CardTitle>
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href="/dashboard/events">View All</Link>
+                  </Button>
+                </CardHeader>
+                <CardContent>
+                  <EventsTable events={events.slice(0, 5)} />
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Right Column - Activity and Upcoming */}
+            <div className="space-y-8">
+              {/* Upcoming Events */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <Clock className="h-5 w-5 mr-2" />
+                    Upcoming Events
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {upcomingEvents.length > 0 ? (
+                    upcomingEvents.map((event: any) => (
+                      <div key={event.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div>
+                          <p className="font-medium text-sm">{event.client_name}</p>
+                          <p className="text-xs text-gray-600">{event.event_type}</p>
+                          <p className="text-xs text-gray-500">{new Date(event.event_date).toLocaleDateString()}</p>
+                        </div>
+                        <Badge
+                          variant={
+                            event.status === "confirmed"
+                              ? "default"
+                              : event.status === "in_progress"
+                                ? "secondary"
+                                : "outline"
+                          }
+                        >
+                          {event.status}
+                        </Badge>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-gray-500 text-sm">No upcoming events</p>
+                  )}
+                </CardContent>
+              </Card>
+
+              {/* Recent Activity */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Recent Activity</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <RecentActivity payments={recentPayments} />
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  } catch (error) {
+    console.error("Dashboard error:", error)
+    return (
+      <div className="min-h-screen bg-gray-50 p-6 flex items-center justify-center">
+        <Card className="max-w-md w-full">
+          <CardHeader>
+            <CardTitle className="text-red-600">Database Connection Error</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-600 mb-4">
+              Unable to connect to the database. Please check your environment variables.
+            </p>
+            <div className="bg-gray-100 p-3 rounded text-sm">
+              <p className="font-medium">Required environment variables:</p>
+              <ul className="mt-2 space-y-1 text-xs">
+                <li>• DATABASE_URL</li>
+                <li>• RESEND_API_KEY</li>
+                <li>• RESEND_FROM_EMAIL</li>
+                <li>• RESEND_FROM_NAME</li>
+              </ul>
+            </div>
+            <Button className="w-full mt-4" onClick={() => window.location.reload()}>
+              Retry Connection
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+}

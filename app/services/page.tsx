@@ -18,7 +18,7 @@ export default function ServicesPage() {
       subtitle: "Complete Event Coordination",
       description:
         "From concept to celebration, we handle every aspect of your event planning with meticulous attention to detail.",
-      image: "/placeholder.svg?height=400&width=600&text=Event+Planning",
+      image: "/event-planning.jpg",
       features: [
         "Initial consultation and vision development",
         "Detailed timeline and project management",
@@ -36,7 +36,7 @@ export default function ServicesPage() {
       subtitle: "Artisanal Cake Creations",
       description:
         "Our master cake designers create stunning, delicious centerpieces that perfectly complement your celebration.",
-      image: "/placeholder.svg?height=400&width=600&text=Custom+Cakes",
+      image: "/custom-cake.jpeg",
       features: [
         "Custom design consultation",
         "Flavor tasting sessions",
@@ -53,7 +53,7 @@ export default function ServicesPage() {
       title: "Venue Curation",
       subtitle: "Perfect Location Sourcing",
       description: "We find and secure the ideal venue that matches your vision, style, and budget requirements.",
-      image: "/placeholder.svg?height=400&width=600&text=Venue+Curation",
+      image: "/venue-curation.jpg",
       features: [
         "Venue research and scouting",
         "Site visits and evaluations",
@@ -70,7 +70,7 @@ export default function ServicesPage() {
       title: "Design & Styling",
       subtitle: "Complete Aesthetic Direction",
       description: "Our design team creates cohesive, beautiful environments that bring your aesthetic vision to life.",
-      image: "/placeholder.svg?height=400&width=600&text=Design+Styling",
+      image: "/design-styling.jpg",
       features: [
         "Color palette development",
         "Floral design and arrangements",

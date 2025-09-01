@@ -18,7 +18,7 @@ export default function PortfolioPage() {
     {
       id: 1,
       category: "Weddings",
-      image: "/weddings.jpg?height=500&width=700&text=Elegant+Garden+Wedding",
+      image: "/weddings.jpg",
       title: "Romantic Garden Wedding",
       description: "Intimate celebration with blush tones, natural elements, and custom floral arrangements",
       client: "Sarah & Michael",
@@ -28,7 +28,7 @@ export default function PortfolioPage() {
     {
       id: 2,
       category: "Cakes",
-      image: "/custom-cakes.jpeg?height=500&width=700&text=Three+Tier+Wedding+Cake",
+      image: "/custom-cakes.jpeg",
       title: "Cakes",
       description: "Hand-crafted sugar flowers with vanilla bean cake and raspberry filling",
       client: "Wedding Reception",
@@ -38,7 +38,7 @@ export default function PortfolioPage() {
     {
       id: 3,
       category: "Birthdays",
-      image: "/birthday.jpg?height=500&width=700&text=Milestone+Birthday+Party",
+      image: "/birthday.jpg",
       title: "Jubilee Celebration",
       description: "Sophisticated milestone celebration with gold accents and elegant table settings",
       client: "Jennifer's 50th",
@@ -48,7 +48,7 @@ export default function PortfolioPage() {
     {
       id: 4,
       category: "Corporate",
-      image: "/product-launch.jpg?height=500&width=700&text=Product+Launch+Event",
+      image: "/product-launch.jpg",
       title: "Product Launch",
       description: "Modern corporate event with branded elements and interactive displays",
       client: "TechCorp Inc.",
@@ -58,7 +58,7 @@ export default function PortfolioPage() {
     {
       id: 5,
       category: "Baby Showers",
-      image: "/baby-shower.jpeg?height=500&width=700&text=Cloud+Baby+Shower",
+      image: "/baby-shower.jpeg",
       title: "Baby Shower",
       description: "Dreamy celebration with cloud decorations, soft pastels, and whimsical details",
       client: "Baby Shower",
@@ -68,7 +68,7 @@ export default function PortfolioPage() {
     {
       id: 7,
       category: "Weddings",
-      image: "/traditional-wedding.jpeg?height=500&width=700&text=Modern+City+Wedding",
+      image: "/traditional-wedding.jpeg",
       title: "Traditional Wedding",
       description: "Contemporary celebration with city skyline views and minimalist design",
       client: "Alex & Jordan",
@@ -78,7 +78,7 @@ export default function PortfolioPage() {
     {
       id: 8,
       category: "Weddings",
-      image: "/placeholder.svg?height=500&width=700&text=Modern+City+Wedding",
+      image: "/placeholder.svg",
       title: "Urban Wedding",
       description: "Contemporary celebration with city skyline views and minimalist design",
       client: "Alex & Jordan",
@@ -88,7 +88,7 @@ export default function PortfolioPage() {
     {
       id: 10,
       category: "Corporate",
-      image: "/company-gala.jpg?height=500&width=700&text=Annual+Gala",
+      image: "/company-gala.jpg",
       title: "Annual Company Gala",
       description: "Formal corporate gala with elegant lighting and sophisticated table settings",
       client: "Global Finance Ltd.",
@@ -98,7 +98,7 @@ export default function PortfolioPage() {
     {
       id: 11,
       category: "Church Events",
-      image: "/mothers-union.jpg?height=500&width=700&text=Annual+Gala",
+      image: "/mothers-union.jpg",
       title: "Mothers Union",
       description: "Formal corporate gala with elegant lighting and sophisticated table settings",
       client: "Global Finance Ltd.",
@@ -108,7 +108,7 @@ export default function PortfolioPage() {
     {
       id: 12,
       category: "Church Events",
-      image: "/placeholder.svg?height=500&width=700&text=Annual+Gala",
+      image: "/placeholder.svg",
       title: "Baptisim",
       description: "Formal corporate gala with elegant lighting and sophisticated table settings",
       client: "Global Finance Ltd.",
@@ -118,7 +118,7 @@ export default function PortfolioPage() {
     {
       id: 13,
       category: "Church Events",
-      image: "/placeholder.svg?height=500&width=700&text=Annual+Gala",
+      image: "/placeholder.svg",
       title: "Confirmation",
       description: "Formal corporate gala with elegant lighting and sophisticated table settings",
       client: "Global Finance Ltd.",
@@ -128,7 +128,7 @@ export default function PortfolioPage() {
     {
       id: 14,
       category: "Church Events",
-      image: "/placeholder.svg?height=500&width=700&text=Annual+Gala",
+      image: "/placeholder.svg",
       title: "Church Launch",
       description: "Formal corporate gala with elegant lighting and sophisticated table settings",
       client: "Global Finance Ltd.",
@@ -138,7 +138,7 @@ export default function PortfolioPage() {
     {
       id: 15,
       category: "Church Events",
-      image: "/placeholder.svg?height=500&width=700&text=Annual+Gala",
+      image: "/placeholder.svg",
       title: "Couples Dinner",
       description: "Formal corporate gala with elegant lighting and sophisticated table settings",
       client: "Global Finance Ltd.",
@@ -148,7 +148,7 @@ export default function PortfolioPage() {
     {
       id: 16,
       category: "Retirement Events",
-      image: "/placeholder.svg?height=500&width=700&text=Annual+Gala",
+      image: "/placeholder.svg",
       title: "Retirement",
       description: "Formal corporate gala with elegant lighting and sophisticated table settings",
       client: "Global Finance Ltd.",

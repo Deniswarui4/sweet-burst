@@ -466,21 +466,24 @@ export default function HomePage() {
                   size="sm"
                   className="border-neutral-700 text-neutral-400 hover:text-white hover:border-white bg-transparent rounded-full"
                 >
-                  <Instagram className="w-4 h-4" />
+                  <a href="https://www.instagram.com/sweetbursteventskenya">
+                  <Instagram className="w-4 h-4" /></a>
                 </Button>
                 <Button
                   variant="outline"
                   size="sm"
                   className="border-neutral-700 text-neutral-400 hover:text-white hover:border-white bg-transparent rounded-full"
                 >
-                  <Facebook className="w-4 h-4" />
+                  <a href="https://facebook.com/sweetbursteventskenya">
+                  <Facebook className="w-4 h-4" /></a>
                 </Button>
                 <Button
                   variant="outline"
                   size="sm"
                   className="border-neutral-700 text-neutral-400 hover:text-white hover:border-white bg-transparent rounded-full"
                 >
-                  <Twitter className="w-4 h-4" />
+                  <a href="/">
+                  <Twitter className="w-4 h-4" /></a>
                 </Button>
               </div>
             </div>

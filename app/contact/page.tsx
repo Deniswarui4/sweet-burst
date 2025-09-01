@@ -13,28 +13,28 @@ export default function ContactPage() {
       icon: <Phone className="w-6 h-6" />,
       title: "Phone",
       description: "Call us for immediate assistance",
-      contact: "+1 (555) 123-4567",
+      contact: "+(254) 7213 37830",
       action: "Call Now",
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
       description: "Send us a detailed message",
-      contact: "hello@sweetburst.com",
+      contact: "sales@sweetburst.co.ke",
       action: "Send Email",
     },
     {
       icon: <MessageCircle className="w-6 h-6" />,
       title: "WhatsApp",
       description: "Quick chat and instant responses",
-      contact: "+1 (555) 123-4567",
+      contact: "+(254) 7213 37830",
       action: "Chat Now",
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Visit Us",
       description: "Schedule an in-person consultation",
-      contact: "123 Event Street, City, State 12345",
+      contact: "Kasarani, Nairobi, Kenya",
       action: "Get Directions",
     },
   ]
@@ -191,7 +191,7 @@ export default function ContactPage() {
                     <div className="mt-6 p-4 bg-neutral-50 rounded-xl">
                       <p className="text-sm text-neutral-600">
                         <strong>Emergency Contact:</strong> For urgent matters on weekends or holidays, please call our
-                        emergency line at +1 (555) 987-6543
+                        emergency line at +(254) 7213 37830
                       </p>
                     </div>
                   </CardContent>
@@ -239,9 +239,7 @@ export default function ContactPage() {
                       <div className="flex items-start space-x-3">
                         <MapPin className="w-5 h-5 text-neutral-600 mt-0.5" />
                         <div>
-                          <p className="font-medium text-neutral-900">Sweet Burst Studio</p>
-                          <p className="text-neutral-600 text-sm">123 Event Street</p>
-                          <p className="text-neutral-600 text-sm">City, State 12345</p>
+                          <p className="font-medium text-neutral-900">Sweet Burst Events</p>
                         </div>
                       </div>
                       <Button

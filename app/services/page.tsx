@@ -170,17 +170,6 @@ export default function ServicesPage() {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-6 pt-4">
-                    <div className="flex items-center space-x-2">
-                      <Star className="w-5 h-5 text-amber-500" />
-                      <span className="text-neutral-600 font-medium">{service.pricing}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Clock className="w-5 h-5 text-neutral-500" />
-                      <span className="text-neutral-600">{service.duration}</span>
-                    </div>
-                  </div>
-
                   <Button
                     size="lg"
                     className="bg-neutral-900 hover:bg-neutral-800 text-white px-8 py-4 rounded-full font-medium group"

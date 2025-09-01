@@ -48,7 +48,7 @@ export default function PortfolioPage() {
     {
       id: 4,
       category: "Corporate",
-      image: "/product-launch.jpg",
+      image: "/product-launch.JPG",
       title: "Product Launch",
       description: "Modern corporate event with branded elements and interactive displays",
       client: "TechCorp Inc.",
@@ -66,7 +66,7 @@ export default function PortfolioPage() {
       tags: ["Whimsical", "Pastels", "Clouds"],
     },
     {
-      id: 7,
+      id: 6,
       category: "Weddings",
       image: "/traditional-wedding.jpeg",
       title: "Traditional Wedding",
@@ -76,7 +76,7 @@ export default function PortfolioPage() {
       tags: ["Urban", "Modern", "Rooftop"],
     },
     {
-      id: 8,
+      id: 7,
       category: "Weddings",
       image: "/placeholder.svg",
       title: "Urban Wedding",
@@ -86,9 +86,9 @@ export default function PortfolioPage() {
       tags: ["Urban", "Modern", "Rooftop"],
     },
     {
-      id: 10,
+      id: 8,
       category: "Corporate",
-      image: "/company-gala.jpg",
+      image: "/company-gala.JPG",
       title: "Annual Company Gala",
       description: "Formal corporate gala with elegant lighting and sophisticated table settings",
       client: "Global Finance Ltd.",
@@ -96,7 +96,7 @@ export default function PortfolioPage() {
       tags: ["Formal", "Gala", "Corporate"],
     },
     {
-      id: 11,
+      id: 9,
       category: "Church Events",
       image: "/mothers-union.jpg",
       title: "Mothers Union",
@@ -106,7 +106,7 @@ export default function PortfolioPage() {
       tags: ["Formal", "Gala", "Corporate"],
     },
     {
-      id: 12,
+      id: 10,
       category: "Church Events",
       image: "/placeholder.svg",
       title: "Baptisim",
@@ -116,7 +116,7 @@ export default function PortfolioPage() {
       tags: ["Formal", "Gala", "Corporate"],
     },
     {
-      id: 13,
+      id: 11,
       category: "Church Events",
       image: "/placeholder.svg",
       title: "Confirmation",
@@ -126,7 +126,7 @@ export default function PortfolioPage() {
       tags: ["Formal", "Gala", "Corporate"],
     },
     {
-      id: 14,
+      id: 12,
       category: "Church Events",
       image: "/placeholder.svg",
       title: "Church Launch",
@@ -136,7 +136,7 @@ export default function PortfolioPage() {
       tags: ["Formal", "Gala", "Corporate"],
     },
     {
-      id: 15,
+      id: 13,
       category: "Church Events",
       image: "/placeholder.svg",
       title: "Couples Dinner",
@@ -146,7 +146,7 @@ export default function PortfolioPage() {
       tags: ["Formal", "Gala", "Corporate"],
     },
     {
-      id: 16,
+      id: 14,
       category: "Retirement Events",
       image: "/placeholder.svg",
       title: "Retirement",

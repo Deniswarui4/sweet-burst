@@ -28,7 +28,7 @@ export default function PortfolioPage() {
     {
       id: 2,
       category: "Cakes",
-      image: "/mufasa.JPEG",
+      image: "/mufasa.jpeg",
       title: "Cakes",
       description: "Hand-crafted sugar flowers with vanilla bean cake and raspberry filling",
       client: "Wedding Reception",
